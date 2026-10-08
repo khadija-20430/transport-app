@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="transport.control.VerificationTitreController"
+      spacing="20" alignment="CENTER"
+      style="-fx-background-color: #f4f4f9; -fx-padding: 30;">
+
+    <Text text="Vérification de Titre de Transport"
+          style="-fx-font-size: 20px; -fx-fill: #2C3E50; -fx-font-weight: bold;"/>
+
+    <GridPane hgap="10" vgap="15" alignment="CENTER">
+        <columnConstraints>
+            <ColumnConstraints halignment="RIGHT" minWidth="100"/>
+            <ColumnConstraints halignment="LEFT" minWidth="200"/>
+        </columnConstraints>
+
+        <!-- Champ pour saisir l'ID du titre -->
+        <Label text="ID du Titre:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+        <TextField fx:id="idTitreField" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+        <!-- Date de vérification -->
+        <Label text="Date de vérification:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+        <DatePicker fx:id="dateVerificationPicker" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+        <!-- Bouton de vérification -->
+        <Button text="Vérifier Validité" onAction="#handleVerifier"
+                GridPane.rowIndex="2" GridPane.columnIndex="1"
+                style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 8 20;"/>
+    </GridPane>
+
+    <!-- Résultat de la vérification -->
+    <VBox fx:id="resultBox" alignment="CENTER" spacing="10"
+          style="-fx-border-color: #3498db; -fx-border-width: 1; -fx-border-radius: 5; -fx-padding: 15;"
+          visible="false">
+        <Text fx:id="typeTitreText" style="-fx-font-size: 16px; -fx-fill: #2C3E50;"/>
+        <Text fx:id="dateAchatText" style="-fx-font-size: 14px; -fx-fill: #7f8c8d;"/>
+        <Text fx:id="validiteText" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+    </VBox>
+
+    <!-- Bouton de retour -->
+    <Button text="Retour" onAction="#handleRetour"
+            style="-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-padding: 8 25;"/>
+
+</VBox>

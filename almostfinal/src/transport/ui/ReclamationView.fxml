@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.collections.FXCollections?>
+<?import transport.core.TypeReclamation?>
+<?import transport.core.TypeProblemeTechnique?>
+<?import transport.core.NiveauGravite?>
+<?import transport.core.TypeIncident?>
+<?import transport.core.ModePaiement?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+
+<?import java.lang.String?>
+<VBox xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="transport.control.ReclamationController"
+      stylesheets="@style.css"
+      spacing="15" styleClass="root">
+
+    <Label text="Gestion des Réclamations" styleClass="main-title"/>
+
+    <TabPane styleClass="custom-tab-pane">
+        <Tab text="Nouvelle Réclamation" styleClass="custom-tab">
+            <VBox spacing="15" styleClass="form-container">
+                <GridPane hgap="10" vgap="10">
+                    <columnConstraints>
+                        <ColumnConstraints halignment="RIGHT" minWidth="150"/>
+                        <ColumnConstraints halignment="LEFT" minWidth="300"/>
+                    </columnConstraints>
+
+                    <!-- Type de réclamation -->
+                    <Label text="Type*:" styleClass="form-label" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                    <ComboBox fx:id="typeComboBox" styleClass="form-combo" GridPane.rowIndex="0" GridPane.columnIndex="1">
+                        <items>
+                            <FXCollections fx:factory="observableArrayList">
+                                <TypeReclamation fx:constant="TECHNIQUE"/>
+                                <TypeReclamation fx:constant="SERVICE"/>
+                                <TypeReclamation fx:constant="PAIEMENT"/>
+                            </FXCollections>
+                        </items>
+                    </ComboBox>
+
+                    <!-- Personne concernée -->
+                    <Label text="Personne*:" styleClass="form-label" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                    <ComboBox fx:id="personneComboBox" styleClass="form-combo" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+                    <!-- Description -->
+                    <Label text="Description*:" styleClass="form-label" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                    <TextArea fx:id="descriptionTextArea" styleClass="form-textarea" GridPane.rowIndex="2" GridPane.columnIndex="1"
+                              prefRowCount="3" wrapText="true"/>
+
+                    <!-- Détails techniques -->
+                    <VBox fx:id="techDetails" visible="false" GridPane.rowIndex="3" GridPane.columnIndex="1" spacing="5" styleClass="details-box">
+                        <Label text="Détails techniques:" styleClass="details-title"/>
+                        <GridPane hgap="5" vgap="5">
+                            <columnConstraints>
+                                <ColumnConstraints halignment="RIGHT" minWidth="100"/>
+                                <ColumnConstraints halignment="LEFT" minWidth="200"/>
+                            </columnConstraints>
+
+                            <Label text="Type problème*:" styleClass="form-label" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                            <ComboBox fx:id="typeProblemeCombo" styleClass="form-combo" GridPane.rowIndex="0" GridPane.columnIndex="1">
+                                <items>
+                                    <FXCollections fx:factory="observableArrayList">
+                                        <TypeProblemeTechnique fx:constant="AFFICHAGE"/>
+                                        <TypeProblemeTechnique fx:constant="CLIMATISATION"/>
+                                        <TypeProblemeTechnique fx:constant="SONORISATION"/>
+                                        <TypeProblemeTechnique fx:constant="LECTEUR"/>
+                                    </FXCollections>
+                                </items>
+                            </ComboBox>
+
+                            <Label text="Gravité*:" styleClass="form-label" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                            <ComboBox fx:id="graviteCombo" styleClass="form-combo" GridPane.rowIndex="1" GridPane.columnIndex="1">
+                                <items>
+                                    <FXCollections fx:factory="observableArrayList">
+                                        <NiveauGravite fx:constant="FAIBLE"/>
+                                        <NiveauGravite fx:constant="MOYEN"/>
+                                        <NiveauGravite fx:constant="FORT"/>
+                                    </FXCollections>
+                                </items>
+                            </ComboBox>
+
+                            <Label text="Cible*:" styleClass="form-label" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                            <ComboBox fx:id="cibleComboBox" styleClass="form-combo" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+                        </GridPane>
+                    </VBox>
+
+                    <!-- Détails service -->
+                    <VBox fx:id="serviceDetails" visible="false" GridPane.rowIndex="4" GridPane.columnIndex="1" spacing="5" styleClass="details-box">
+                        <Label text="Détails service:" styleClass="details-title"/>
+                        <GridPane hgap="5" vgap="5">
+                            <columnConstraints>
+                                <ColumnConstraints halignment="RIGHT" minWidth="100"/>
+                                <ColumnConstraints halignment="LEFT" minWidth="200"/>
+                            </columnConstraints>
+
+                            <Label text="Type incident*:" styleClass="form-label" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                            <ComboBox fx:id="typeIncidentCombo" styleClass="form-combo" GridPane.rowIndex="0" GridPane.columnIndex="1">
+                                <items>
+                                    <FXCollections fx:factory="observableArrayList">
+                                        <TypeIncident fx:constant="COMPORTEMENT"/>
+                                        <TypeIncident fx:constant="AGRESSION"/>
+                                        <TypeIncident fx:constant="VOL"/>
+                                    </FXCollections>
+                                </items>
+                            </ComboBox>
+                        </GridPane>
+                    </VBox>
+
+                    <!-- Détails paiement -->
+                    <VBox fx:id="paymentDetails" visible="false" GridPane.rowIndex="5" GridPane.columnIndex="1" spacing="5" styleClass="details-box">
+                        <Label text="Détails paiement:" styleClass="details-title"/>
+                        <GridPane hgap="5" vgap="5">
+                            <columnConstraints>
+                                <ColumnConstraints halignment="RIGHT" minWidth="100"/>
+                                <ColumnConstraints halignment="LEFT" minWidth="200"/>
+                            </columnConstraints>
+
+                            <Label text="Montant*:" styleClass="form-label" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                            <TextField fx:id="montantField" styleClass="form-textfield" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+                            <Label text="Mode paiement*:" styleClass="form-label" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                            <ComboBox fx:id="modePaiementCombo" styleClass="form-combo" GridPane.rowIndex="1" GridPane.columnIndex="1">
+                                <items>
+                                    <FXCollections fx:factory="observableArrayList">
+                                        <ModePaiement fx:constant="ESPECE"/>
+                                        <ModePaiement fx:constant="DAHABIA"/>
+                                        <ModePaiement fx:constant="BARIDIMOB"/>
+                                    </FXCollections>
+                                </items>
+                            </ComboBox>
+                        </GridPane>
+                    </VBox>
+                </GridPane>
+
+                <Button text="Soumettre" onAction="#handleSoumettre" styleClass="primary-button"/>
+            </VBox>
+        </Tab>
+
+        <Tab text="Liste des Réclamations" styleClass="custom-tab">
+            <VBox spacing="15">
+                <!-- Filtres -->
+                <HBox spacing="10" alignment="CENTER_LEFT" styleClass="filter-box">
+                    <Label text="Filtrer:" styleClass="filter-label"/>
+                    <ComboBox fx:id="filtreComboBox" styleClass="filter-combo">
+                        <items>
+                            <FXCollections fx:factory="observableArrayList">
+                                <String fx:value="Toutes"/>
+                                <String fx:value="Technique"/>
+                                <String fx:value="Service"/>
+                                <String fx:value="Paiement"/>
+                                <String fx:value="Non résolues"/>
+                            </FXCollections>
+                        </items>
+                    </ComboBox>
+                    <Button text="Filtrer" onAction="#handleFiltrer" styleClass="secondary-button"/>
+                    <Button text="Tout afficher" onAction="#handleAfficherTout" styleClass="neutral-button"/>
+                </HBox>
+
+                <!-- Tableau des réclamations -->
+                <TableView fx:id="reclamationTableView" styleClass="data-table">
+                    <columns>
+                        <TableColumn text="N°" styleClass="table-column" prefWidth="50">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="numero"/>
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn text="Date" styleClass="table-column" prefWidth="100">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="date"/>
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn text="Type" styleClass="table-column" prefWidth="100">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="type"/>
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn text="Personne" styleClass="table-column" prefWidth="150">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="personne"/>
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn text="Cible" styleClass="table-column" prefWidth="150">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="cible"/>
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn text="Description" styleClass="table-column" prefWidth="250">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="description"/>
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn fx:id="resolueColumn" text="Statut" styleClass="table-column" prefWidth="80">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="resolue"/>
+                            </cellValueFactory>
+                        </TableColumn>
+                    </columns>
+                    <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+                    </columnResizePolicy>
+                </TableView>
+
+                <!-- Boutons d'action -->
+                <HBox spacing="10" alignment="CENTER_RIGHT" styleClass="action-box">
+                    <Button text="Marquer comme résolue" onAction="#handleResoudre" styleClass="success-button"/>
+                    <Label fx:id="messageLabel" styleClass="message-label"/>
+                </HBox>
+            </VBox>
+        </Tab>
+    </TabPane>
+</VBox>

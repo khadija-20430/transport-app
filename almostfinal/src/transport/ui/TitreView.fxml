@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.effect.*?>
+
+<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="transport.control.TitreController"
+      spacing="20" alignment="TOP_CENTER"
+      style="-fx-background-color: linear-gradient(to bottom, #f5f7fa, #e4e8f0); -fx-padding: 25;">
+
+    <!-- En-tête avec bouton fermeture -->
+    <HBox alignment="CENTER_RIGHT" style="-fx-padding: 0 0 10 0;">
+        <Button text="✕" fx:id="closeButton" onAction="#handleClose"
+                style="-fx-background-color: transparent; -fx-text-fill: #e74c3c; -fx-font-size: 16; -fx-font-weight: bold;"/>
+    </HBox>
+
+    <!-- Titre principal avec effet -->
+    <Label text="Acheter un titre de transport" style="-fx-text-fill: #2c3e50;">
+        <font>
+            <Font name="System Bold" size="20"/>
+        </font>
+        <effect>
+            <DropShadow color="rgba(0,0,0,0.1)" radius="3" spread="0.3"/>
+        </effect>
+    </Label>
+
+    <!-- Conteneur principal avec ombre -->
+    <VBox spacing="15" style="-fx-background-color: white; -fx-background-radius: 10; -fx-padding: 20; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);">
+
+        <!-- Choix du type de titre -->
+        <VBox spacing="10">
+            <Label text="Type de titre:" style="-fx-font-weight: bold; -fx-text-fill: #34495e;"/>
+            <HBox spacing="20" alignment="CENTER_LEFT">
+                <RadioButton text="Ticket simple (50 DA)" fx:id="radioTicket" selected="true"
+                             style="-fx-text-fill: #2c3e50; -fx-font-size: 14;"/>
+                <RadioButton text="Carte personnelle" fx:id="radioCarte"
+                             style="-fx-text-fill: #2c3e50; -fx-font-size: 14;"/>
+            </HBox>
+        </VBox>
+
+        <!-- Séparateur -->
+        <Separator style="-fx-background-color: #ecf0f1; -fx-padding: 5 0;"/>
+
+        <!-- Formulaire pour carte personnelle -->
+        <GridPane fx:id="carteForm" hgap="15" vgap="15" style="-fx-padding: 5;">
+            <columnConstraints>
+                <ColumnConstraints hgrow="NEVER" minWidth="150"/>
+                <ColumnConstraints hgrow="ALWAYS" minWidth="200"/>
+            </columnConstraints>
+
+            <!-- Nom -->
+            <Label text="Nom*:" GridPane.rowIndex="0" GridPane.columnIndex="0" style="-fx-text-fill: #34495e;"/>
+            <TextField fx:id="nomField" GridPane.rowIndex="0" GridPane.columnIndex="1" style="-fx-background-radius: 5;"/>
+
+            <!-- Prénom -->
+            <Label text="Prénom*:" GridPane.rowIndex="1" GridPane.columnIndex="0" style="-fx-text-fill: #34495e;"/>
+            <TextField fx:id="prenomField" GridPane.rowIndex="1" GridPane.columnIndex="1" style="-fx-background-radius: 5;"/>
+
+            <!-- Date de naissance -->
+            <Label text="Date de naissance*:" GridPane.rowIndex="2" GridPane.columnIndex="0" style="-fx-text-fill: #34495e;"/>
+            <DatePicker fx:id="dateNaissancePicker" GridPane.rowIndex="2" GridPane.columnIndex="1" style="-fx-background-radius: 5;"/>
+
+            <!-- Mode de paiement -->
+            <Label text="Mode de paiement:" GridPane.rowIndex="3" GridPane.columnIndex="0" style="-fx-text-fill: #34495e;"/>
+            <HBox spacing="15" alignment="CENTER_LEFT" GridPane.rowIndex="3" GridPane.columnIndex="1">
+                <RadioButton fx:id="radioCash" text="Espèces" toggleGroup="$paiementGroup"
+                             style="-fx-text-fill: #2c3e50;"/>
+                <RadioButton fx:id="radioDahabia" text="Dahabia" toggleGroup="$paiementGroup"
+                             style="-fx-text-fill: #2c3e50;"/>
+                <RadioButton fx:id="radioBaridiMob" text="BaridiMob" toggleGroup="$paiementGroup"
+                             style="-fx-text-fill: #2c3e50;"/>
+            </HBox>
+
+            <fx:define>
+                <ToggleGroup fx:id="paiementGroup"/>
+            </fx:define>
+
+            <!-- Handicapé -->
+            <Label text="Handicapé:" GridPane.rowIndex="4" GridPane.columnIndex="0" style="-fx-text-fill: #34495e;"/>
+            <CheckBox fx:id="handicapCheck" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+
+            <!-- Employé -->
+            <Label text="Employé:" GridPane.rowIndex="5" GridPane.columnIndex="0" style="-fx-text-fill: #34495e;"/>
+            <CheckBox fx:id="employeCheck" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
+
+            <!-- Matricule -->
+            <Label text="Matricule:" GridPane.rowIndex="6" GridPane.columnIndex="0" style="-fx-text-fill: #34495e;"/>
+            <TextField fx:id="matriculeField" disable="true" GridPane.rowIndex="6" GridPane.columnIndex="1" style="-fx-background-radius: 5;"/>
+
+            <!-- Fonction -->
+            <Label text="Fonction:" GridPane.rowIndex="7" GridPane.columnIndex="0" style="-fx-text-fill: #34495e;"/>
+            <ComboBox fx:id="fonctionCombo" disable="true" GridPane.rowIndex="7" GridPane.columnIndex="1" style="-fx-background-radius: 5;"/>
+        </GridPane>
+
+        <!-- Boutons avec style moderne -->
+        <HBox spacing="15" alignment="CENTER" style="-fx-padding: 10 0 0 0;">
+            <Button text="Acheter" onAction="#handleAcheter" defaultButton="true"
+                    style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 5; -fx-pref-width: 120; -fx-pref-height: 35;"/>
+            <Button text="Réinitialiser" onAction="#handleReset"
+                    style="-fx-background-color: #95a5a6; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 5; -fx-pref-width: 120; -fx-pref-height: 35;"/>
+            <Button text="Afficher la liste" onAction="#handleAfficherListetitre"
+                    style="-fx-background-color: #2ecc71; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 5; -fx-pref-width: 150; -fx-pref-height: 35;"/>
+        </HBox>
+    </VBox>
+
+    <!-- Résultat avec style amélioré -->
+    <VBox spacing="5" style="-fx-padding: 10 0;">
+        <Label text="Résultat:" style="-fx-font-weight: bold; -fx-text-fill: #34495e;"/>
+        <Label fx:id="resultLabel" wrapText="true"
+               style="-fx-border-color: #bdc3c7; -fx-border-radius: 5; -fx-padding: 10; -fx-background-color: #f8f9fa; -fx-min-height: 60; -fx-max-width: 500;"/>
+    </VBox>
+</VBox>

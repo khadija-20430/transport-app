@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Pos?>
+<?import javafx.scene.text.Text?>
+
+<VBox spacing="15" alignment="CENTER" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="transport.control.UsagerController" style="-fx-background-color: #f4f4f9; -fx-padding: 30;">
+
+    <Text text="Gestion des Usagers/Employés" style="-fx-font-size: 22px; -fx-fill: #34495e; -fx-font-weight: bold;" />
+
+    <!-- Sélection du type de personne -->
+    <HBox spacing="10" alignment="CENTER">
+        <RadioButton fx:id="usagerRadio" text="Usager" selected="true"/>
+        <RadioButton fx:id="employeRadio" text="Employé"/>
+    </HBox>
+
+    <!-- Champs communs -->
+    <TextField fx:id="nomField" promptText="Nom" style="-fx-font-size: 14px; -fx-pref-width: 250px;" />
+    <TextField fx:id="prenomField" promptText="Prénom" style="-fx-font-size: 14px; -fx-pref-width: 250px;" />
+    <DatePicker fx:id="datePicker" style="-fx-font-size: 14px; -fx-pref-width: 250px;" />
+    <CheckBox fx:id="handicapeBox" text="Handicapé" />
+
+    <!-- Champs spécifiques à l'employé -->
+    <TextField fx:id="matriculeField" promptText="Matricule" style="-fx-font-size: 14px; -fx-pref-width: 250px;" visible="false"/>
+    <ComboBox fx:id="fonctionCombo" promptText="Sélectionner une fonction"
+              style="-fx-font-size: 14px; -fx-pref-width: 250px;" visible="false"/>
+
+    <HBox spacing="10">
+        <Button text="Ajouter" onAction="#handleAddPersonne"
+                style="-fx-font-size: 16px; -fx-background-color: #2ecc71; -fx-text-fill: white;" />
+        <Button text="Afficher la liste" onAction="#handleAfficherListePersonnes"
+                style="-fx-font-size: 16px; -fx-background-color: #3498db; -fx-text-fill: white;" />
+    </HBox>
+
+    <Label fx:id="messageLabel" style="-fx-font-size: 14px; -fx-text-fill: #e74c3c;" />
+
+</VBox>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+
+<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="transport.control.DisplayListePersonnesController"
+      stylesheets="@style.css"
+      spacing="20" alignment="CENTER"
+      styleClass="root">
+
+    <!-- En-tête avec titre -->
+    <VBox spacing="10" alignment="CENTER">
+        <Label text="Liste des Usagers et Employés" styleClass="main-title"/>
+        <Separator styleClass="separator"/>
+    </VBox>
+
+    <!-- TableView -->
+    <TableView fx:id="personnesTable" styleClass="data-table">
+        <columns>
+            <TableColumn text="Type" prefWidth="120">
+                <cellValueFactory>
+                    <PropertyValueFactory property="type"/>
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn text="Nom" prefWidth="150">
+                <cellValueFactory>
+                    <PropertyValueFactory property="nom"/>
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn text="Prénom" prefWidth="150">
+                <cellValueFactory>
+                    <PropertyValueFactory property="prenom"/>
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn text="Date de Naissance" prefWidth="180">
+                <cellValueFactory>
+                    <PropertyValueFactory property="dateNaissance"/>
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn text="Détails" prefWidth="300">
+                <cellValueFactory>
+                    <PropertyValueFactory property="details"/>
+                </cellValueFactory>
+            </TableColumn>
+        </columns>
+    </TableView>
+
+    <!-- Boutons -->
+    <HBox spacing="15" alignment="CENTER">
+        <Button text="Retour" onAction="#retour" styleClass="neutral-button"/>
+
+    </HBox>
+</VBox>

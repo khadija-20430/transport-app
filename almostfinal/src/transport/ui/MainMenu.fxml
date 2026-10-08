@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+
+<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="transport.control.MainMenuController"
+      spacing="20" alignment="CENTER"
+      styleClass="root"
+      style="-fx-padding: 30; -fx-background-color: #f4f4f9;">
+
+    <Text text="Menu Principal ESI-RUN" styleClass="title" />
+
+    <!-- Conteneur pour les boutons -->
+    <VBox alignment="CENTER" spacing="15">
+        <Button text="Gestion des Usagers" onAction="#handleAddUsager"
+                styleClass="primary-color" style="-fx-font-size: 14px; -fx-pref-width: 250; -fx-pref-height: 40;"/>
+
+        <Button text="Gestion des Titres" onAction="#handleAddTitre"
+                styleClass="primary-color" style="-fx-font-size: 14px; -fx-pref-width: 250; -fx-pref-height: 40;"/>
+
+        <Button text="Validation des Titres" onAction="#handleCheckTitre"
+                styleClass="primary-color" style="-fx-font-size: 14px; -fx-pref-width: 250; -fx-pref-height: 40;"/>
+
+        <Button text="Gestion des Réclamations" onAction="#handleViewReclamations"
+                styleClass="primary-color" style="-fx-font-size: 14px; -fx-pref-width: 250; -fx-pref-height: 40;"/>
+</VBox>
+
+    <!-- Section d'alerte -->
+    <VBox fx:id="alertBox" alignment="CENTER" spacing="5" styleClass="alert-box" visible="false">
+        <Text text="⚠ ALERTE SUSPENSION" style="-fx-font-size: 16px; -fx-fill: #e74c3c; -fx-font-weight: bold;"/>
+        <Label fx:id="suspensionLabel" style="-fx-text-fill: #e74c3c; -fx-font-size: 14px;"/>
+    </VBox>
+</VBox>
